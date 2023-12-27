@@ -14,16 +14,11 @@ public:
         int right = height.size() - 1;
         while (left < right)
         {
-            int current = (right - left) * min(height[left], height[right]);
-            maxArea = max(current, maxArea);
-            int nextLeft = height[left + 1];
-            int nextRight = height[right - 1];
-            if (nextLeft >= nextRight)
-            {
+            int currentArea = (right - left) * min(height[left], height[right]);
+            maxArea = max(currentArea, maxArea);
+            if (height[left] < height[right]) {
                 left++;
-            }
-            else
-            {
+            } else {
                 right--;
             }
         }
@@ -73,7 +68,8 @@ int main()
     vector<pair<vector<int>, int>> testCases = {
         {{1, 8, 6, 2, 5, 4, 8, 3, 7}, 49},
         {{1, 1}, 1},
-        {{4, 3, 2, 1, 4}, 16},
+        {{1, 1, 1, 1, 1, 10000, 10000, 1, 1, 1, 1, 1}, 10000},
+        {{13, 8, 6, 2, 5, 4, 8, 3, 14}, 8*13},
     };
     test(testCases);
 
